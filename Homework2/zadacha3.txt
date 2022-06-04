@@ -1,0 +1,5 @@
+// Използваме cat за да прочетем текстовия файл, pipe-ваме stdout-a от cat в stdin на командата sort
+// взимаме най-голямото/малкото число, pipe-ваме резултата от sort в head и прочитаме първия ред.
+
+a) cat numbers3.txt | sort -n -r | head -n 1
+b) cat numbers3.txt | sort -n | head -n 1

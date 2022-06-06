@@ -1,0 +1,1 @@
+echo $(($(cat source1.c | wc -l) + $(cat source2.c | wc -l))) > lineCount

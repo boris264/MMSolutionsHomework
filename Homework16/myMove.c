@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
-#include <memory.h>
+#include <stdlib.h>
+#include "strings.h"
 
 int main(int argc, char** argv)
 {
@@ -15,23 +15,22 @@ int main(int argc, char** argv)
 
 	if(sourceFile == NULL)
 	{
-		perror("source file: ");
+		perror("Source: ");
 		return EXIT_FAILURE;
 	}
 	
-	int copyPathLength = strlen(argv[2]);
-	int fileNameLength = strlen(argv[1]);
+	char* sourceFileName = strrchr(argv[1], '/') + 1;
 
-	char path[copyPathLength + fileNameLength];
+	char destinationPath[strlen(argv[2]) + strlen(sourceFileName) + 1];
 
-	strncpy(path, argv[2], copyPathLength + 1);
-	strncat(path, argv[1], fileNameLength + 1);
+	strncpy(destinationPath, argv[2], strlen(argv[2]) + 1);
+	strncat(destinationPath, sourceFileName, strlen(sourceFileName));
 
-	FILE* destinationFile = fopen(path, "wb");
+	FILE* destinationFile = fopen(destinationPath, "wb");
 
 	if(destinationFile == NULL)
 	{
-		perror("destination file: ");
+		perror("Destination: ");
 		return EXIT_FAILURE;
 	}
 
